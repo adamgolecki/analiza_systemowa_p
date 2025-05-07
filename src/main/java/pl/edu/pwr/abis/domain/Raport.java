@@ -1,9 +1,9 @@
-package ModelInformacyjnySystemu;
+package pl.edu.pwr.abis.domain;
 
 public abstract class Raport {
 
 	Aplikacja aplikacja;
-	StanRaportu stan = ModelInformacyjnySystemu.StanRaportu.WersjaRobocza;
+	StanRaportu stan = pl.edu.pwr.abis.domain.StanRaportu.WersjaRobocza;
 	Data dataZlozenia;
 	Data planowanaDataZlozenia;
 	Boolean czyOpozniony;

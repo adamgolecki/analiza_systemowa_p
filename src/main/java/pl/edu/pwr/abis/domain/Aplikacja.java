@@ -1,46 +1,128 @@
-package ModelInformacyjnySystemu;
+package pl.edu.pwr.abis.domain;
 
 import java.util.*;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Proces zgłaszania Projekt do Konkurs
  */
+@Entity
+@Getter
+@Setter
 public class Aplikacja {
 
-	Organizacja organizacja;
-	Collection<FormularzOcenyIndywidualnej> formularzeocenIndywidualnych;
-	Collection<Asesor> asesorzy;
+	@ManyToOne(optional = false)
+    EdycjaKonkursu edycjaKonkursu;
+
+    @ManyToOne(optional = false)
+    Organizacja organizacja;
+
+    @OneToMany
+    Collection<FormularzOcenyIndywidualnej> formularzeocenIndywidualnych;
+
+    @ManyToMany
+    Collection<Asesor> asesorzy;
+
+    @OneToOne
 	Ocena raportOcenyWstepnej;
-	Osoba osobaKontakowa;
-	Organizacja organizacjaInicjujaca;
-	Plik listReferencyjny;
-	Collection<Plik> zdjecia;
-	Collection<Plik> logotypy;
-	Plik film;
-	Plik oswiadczenieAplikanta;
-	Plik oswiadczeznieInicjatora;
-	Adres miejsceWizytyStudyjnej;
-	PrzydziałAsesora asesorWiodacy;
-	Collection<PrzydziałAsesora> przydzieleniAsesorowie;
-	Ocena raportOcenyKoncowej;
-	Raport raportWizytyStudyjnej;
-	Integer numerAplikacji;
-	Data dataZlozenia;
-	StanAplikacji stan;
+
+    @NotNull
+    Osoba osobaKontakowa;
+
+    @ManyToOne
+    Organizacja organizacjaInicjujaca;
+
+    @OneToOne
+    Plik listReferencyjny;
+
+    @ManyToOne
+    Collection<Plik> zdjecia;
+
+    @ManyToOne
+    Collection<Plik> logotypy;
+
+    @OneToOne
+    Plik film;
+
+    @OneToOne
+    Plik oswiadczenieAplikanta;
+
+    @OneToOne
+    Plik oswiadczeznieInicjatora;
+
+    @OneToOne
+    Adres miejsceWizytyStudyjnej;
+
+    @OneToMany
+    PrzydzialAsesora asesorWiodacy;
+
+    @OneToMany
+    Collection<PrzydzialAsesora> przydzieleniAsesorowie;
+
+    @OneToOne
+    Ocena raportOcenyKoncowej;
+
+    @OneToOne
+    Raport raportWizytyStudyjnej;
+
+    @NotNull
+    Integer numerAplikacji;
+
+    @OneToOne
+    Data dataZlozenia;
+
+    @NotNull
+    @OneToOne
+	StanAplikacji stan = StanAplikacji.Nierozpatrzona;
+
 	String powodOdrzucenia;
-	StanOpłaty stanOplaty;
+
+    @NotNull
+	StanOplaty stanOplaty = StanOplaty.Niepokryta;
+
 	WynikAplikacji wynik;
-	String nazwaProjektu;
-	String opisProjektu;
-	Integer czasTrwaniaMiesiace;
-	Integer liczbaCzlonkow;
-	Integer budzet;
-	Integer liczbaPodwykonawców;
-	Boolean czyZgodnyZDefinicja;
-	Boolean czyPublikowalny;
-	Boolean czyUkonczony;
-	Data dataZakonczenia;
+
+    @NotNull
+    String nazwaProjektu;
+
+    @NotNull
+    String opisProjektu;
+
+    @NotNull
+    Integer czasTrwaniaMiesiace;
+
+    @NotNull
+    Integer liczbaCzlonkow;
+
+    @NotNull
+    Integer budzet;
+
+    @NotNull
+    Integer liczbaPodwykonawcow;
+
+    @NotNull
+    Boolean czyZgodnyZDefinicja;
+
+    @NotNull
+    Boolean czyPublikowalny;
+
+    @NotNull
+    Boolean czyUkonczony;
+
+    @OneToOne(optional = false)
+    Data dataZakonczenia;
+
+    @OneToOne
 	FazaOceny fazaOceny;
-	Real sredniaOcenaJury;
+
+    Float sredniaOcenaJury;
 
 }

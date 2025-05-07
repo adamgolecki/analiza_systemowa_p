@@ -32,7 +32,7 @@ import pl.edu.pwr.abis.web.rest.vm.LoginVM;
  */
 @RestController
 @RequestMapping("/api")
-public class AuthenticateController {
+@Entity AuthenticateController {
 
     private final Logger log = LoggerFactory.getLogger(AuthenticateController.class);
 

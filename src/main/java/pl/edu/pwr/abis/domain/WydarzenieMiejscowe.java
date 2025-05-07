@@ -1,9 +1,14 @@
-package ModelInformacyjnySystemu;
+package pl.edu.pwr.abis.domain;
 
-import TypyDanych.*;
 
+import jakarta.persistence.OneToOne;
+
+@Entity
+@Getter
+@Setter
 public class WydarzenieMiejscowe extends InneWydarzenie {
 
-	Date miejsce;
+    @OneToOne
+    Adres miejsce;
 
 }
